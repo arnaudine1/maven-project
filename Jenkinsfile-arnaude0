@@ -1,21 +1,77 @@
 pipeline {
     agent any
 
+    options {
+    buildDiscarder(logRotator(numToKeepStr: '30', artifactNumToKeepStr: '30'))
+  }
     stages {
-        stage('Hello0') {
+        stage('Hello') {
             steps {
                 echo 'Hello World'
+                sh '''
+                ls 
+                pwd
+                uname -a
+                '''
+            }
+        }
+        stage('Hello10') {
+            steps {
+                echo 'Hello World1'
+                sh '''
+                uname -r
+                cat > student1
+                '''
+            }
+        }
+        stage('Hello20') {
+            steps {
+                echo 'Hello World2'
+                sh '''
+                touch arnaude0
+                mkdir bonjour0
+                '''
+            }
+        }
+        stage('Hello30') {
+            steps {
+                echo 'Hello World3'
+                sh '''
+                mv arnaude0 bonjour0
+                '''
             }
         }
 
-        stage('Hello00') {
-            steps {
-                echo 'Hello World'
 
-        stage('Hello000') {
-            steps {
-                echo 'Hello World'        
+
+
+
+
+
+
+
+
+
+
+
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
 
 
 
