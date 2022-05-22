@@ -5,39 +5,61 @@ pipeline {
     buildDiscarder(logRotator(numToKeepStr: '30', artifactNumToKeepStr: '30'))
   }
     stages {
-        stage('Hello') {
+        stage('clean') {
             steps {
-                echo 'Hello World'
                 sh '''
-                ls 
-                pwd
-                uname -a
+                mvn clean
                 '''
             }
         }
-        stage('Hello10') {
+        stage('validate') {
             steps {
-                echo 'Hello World1'
+                
                 sh '''
-                uname -r
-                cat > student1
+                mvn validate
                 '''
             }
         }
-        stage('Hello20') {
+        stage('compile') {
             steps {
-                echo 'Hello World2'
+                
                 sh '''
-                touch arnaude0
-                mkdir bonjour0
+                mvn compile
                 '''
             }
         }
-        stage('Hello30') {
+        stage('test') {
             steps {
-                echo 'Hello World3'
+                
                 sh '''
-                mv arnaude0 bonjour0
+                mvn test
+                '''
+            }
+        }
+
+        stage('package') {
+            steps {
+                
+                sh '''
+                mvn package
+                '''
+            }
+        }
+
+        stage('verify') {
+            steps {
+                
+                sh '''
+            mvn verify    
+                '''
+            }
+        }
+
+        stage('install') {
+            steps {
+                
+                sh '''
+                mvn install
                 '''
             }
         }
@@ -72,12 +94,3 @@ pipeline {
 
 
 }
-
-
-
-
-
-
-
-
-
